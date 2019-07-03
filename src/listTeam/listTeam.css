@@ -1,0 +1,19 @@
+.setWidth {
+    width: 23%;
+    float: left;
+    margin-left: 20px;
+}
+
+.setButton {
+    margin-top: 16px;
+    margin-bottom: 20px;
+}
+
+.mgrRtBtn {
+    margin-right: 20px;
+}
+.teamListing {
+    margin-top: 20px;
+    font-size: 30px;
+    margin-bottom: 20px
+}

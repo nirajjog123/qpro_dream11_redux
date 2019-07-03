@@ -1,0 +1,102 @@
+.rowSize {
+  width: 70%;
+}
+
+.topnav input[type="text"] {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  border: none;
+  font-size: 17px;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+
+/* Create a custom radio button */
+.customRadio {
+  position: absolute;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+  border: 2px solid #1fbed6;
+  background-color: white;
+  -webkit-appearance: none; /*to disable the default appearance of radio button*/
+  -moz-appearance: none;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #2b3f38c7;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  padding-top: 54px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.arrayItems {
+  list-style-type: none;
+  border: 1px solid #d2d3de61;
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #11304657;
+}
+
+.adjustContent {
+  padding-top: 36px;
+}
+
+.setSearchBar {
+  margin-top: 25px;
+  margin-bottom: 13px;
+}
+
+.fontHandle {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+div label input {
+  display: none;
+}
+div label span {
+    border: 2px solid #5acccd;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    overflow: hidden;
+    /* line-height: 1; */
+    text-align: center;
+    border-radius: 100%;
+    font-size: 13pt;
+    left: 0;
+    /* top: 50%; */
+    margin-top: -7.5px;
+    background-color: white;
+}
+input:checked + span {
+  background: #20d16b;
+  border-color: #20d16b;
+}
