@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import "./detailTeam.css";
-import { router,Redirect,Route } from 'react-router'
+import { Redirect } from 'react-router'
+import TeamPanel from '../component/teamPanel';
 
 class detailTeam extends Component {
   constructor(props) {
@@ -29,21 +29,22 @@ class detailTeam extends Component {
       if(this.targetTeam !==undefined){
      parsedTeam = this.targetTeam.map((member, index) => {
         return (
-          <div className="card border-success mb-3 setWidth">
-            <div className="card-header bg-transparent border-success">
-              {member.teamName}
-            </div>
-            <div className="card-body text-success">
-                <div><span className="card-title">Captain:</span>
-                <span>{member.captain}</span></div>
-                <div><span className="card-title">VCaptain:</span>
-                <span>{member.VCaptain}</span></div>
-              <h5 className="card-title">Players:</h5>
-              {member.players.map(item => {
-                return <p className="card-text">{item}</p>;
-              })}
-            </div>
-          </div>
+          // <div className="card border-success mb-3 setWidth">
+          //   <div className="card-header bg-transparent border-success">
+          //     {member.teamName}
+          //   </div>
+          //   <div className="card-body text-success">
+          //       <div><span className="card-title">Captain:</span>
+          //       <span>{member.captain}</span></div>
+          //       <div><span className="card-title">VCaptain:</span>
+          //       <span>{member.VCaptain}</span></div>
+          //     <h5 className="card-title">Players:</h5>
+          //     {member.players.map(item => {
+          //       return <p className="card-text">{item}</p>;
+          //     })}
+          //   </div>
+          // </div>
+          <TeamPanel teamMember = {member} deleteEnable='false' viewEnable='false' showMembers = 'true'/>
         );
       });
     }

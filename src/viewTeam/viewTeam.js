@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import "./viewTeam.css";
-import { router,Redirect,Route } from 'react-router'
+import { Redirect } from 'react-router'
+import TeamPanel from '../component/teamPanel';
 
 class viewTeam extends Component {
   constructor() {
@@ -42,31 +42,8 @@ class viewTeam extends Component {
   showAllTeams() {
     this.player = this.props.selectedPlayer.map((member, index) => {
       return (
-        <div className="card border-success mb-3 setWidth">
-          <div className="card-header bg-transparent border-success">
-            {member.teamName}
-          </div>
-          <div className="card-body text-success">
-            <div><span className="card-title">Captain:</span>
-                <span>{member.captain}</span></div>
-                <div><span className="card-title">VCaptain:</span>
-                <span>{member.VCaptain}</span></div>
-          </div>
-          <div className="card-footer bg-transparent border-success">
-          <button
-              className="btn btn-dark mgrRtBtn"
-              onClick={e => this.viewTeamData(e, member.id)}
-            >
-              View Team
-            </button>
-            <button
-              className="btn btn-dark"
-              onClick={e => this.handleDelete(e, member.id)}
-            >
-              Delete
-            </button>
-          </div>
-        </div>
+        <TeamPanel teamMember = {member} deleteClick={e =>this.handleDelete(e, member.id)} 
+                   viewClick={e=>this.viewTeamData(e, member.id)}/>
       );
     });
 

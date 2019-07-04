@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./listTeam.css";
 import {Redirect } from 'react-router'
-
+import TeamPanel from '../component/teamPanel';
 class listTeam extends Component {
   constructor() {
     super();
@@ -10,7 +10,6 @@ class listTeam extends Component {
     this.player = [];
     this.captain = "";
     this.Vcaptain = "";
- //   this.showAllTeams = this.showAllTeams.bind(this);
     this.state = {
       viewData: [],
       buttonText: "View",
@@ -25,17 +24,7 @@ class listTeam extends Component {
   componentDidMount() {
     this.player = this.props.selectedPlayer.map((member, index) => {
       return (
-        <div className="card border-success mb-3 setWidth">
-          <div className="card-header bg-transparent border-success">
-            {member.teamName}
-          </div>
-          <div className="card-body text-success">
-            <div><span className="card-title">Captain:</span>
-                <span>{member.captain}</span></div>
-                <div><span className="card-title">VCaptain:</span>
-                <span>{member.VCaptain}</span></div>
-          </div>
-        </div>
+        <TeamPanel teamMember = {member} deleteEnable='false' viewEnable='false'/>
       );
     });
 

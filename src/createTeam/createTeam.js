@@ -69,8 +69,6 @@ class createTeam extends Component {
 
     let filterData = "";
     //show filter data
-    // this.showPlayerData = '';
-    //show default data
     this.showPlayerData = [];
 
     filterData = playerData.filter((member, index) => {
