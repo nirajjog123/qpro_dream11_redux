@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import "../createTeam/createTeam.css";
 
-export class createTeam extends Component {  //writing 'export' for test case .. mentioned in redux docs
+export class CreateTeam extends Component {  //writing 'export' for test case .. mentioned in redux docs
   constructor() {
     super();
-    this.jsonData = "";
+    this.jsonData = [];
     this.handleSearch = this.handleSearch.bind(this);
     this.capturePlayer = this.capturePlayer.bind(this);
     this.captureCaptain = this.captureCaptain.bind(this);
@@ -80,7 +80,7 @@ export class createTeam extends Component {  //writing 'export' for test case ..
   }
 
   saveTeam(team, captain, viceCaptain, teamName){
-    if(this.teamName.length >=3 && this.teamName.length <=15){
+    if(this.teamName.match(/^[a-zA-Z]{3,15}$/)){
     this.props.submitTeam(team, captain, viceCaptain, teamName);
     this.setState({renderReady:true});
     }else{
@@ -258,4 +258,4 @@ const mapDispachToProps = dispach => {
 export default connect(
   mapStateToProps,
   mapDispachToProps
-)(createTeam);
+)(CreateTeam);
