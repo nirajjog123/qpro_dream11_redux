@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import "../createTeam/createTeam.css";
 
-class createTeam extends Component {
+export class createTeam extends Component {  //writing 'export' for test case .. mentioned in redux docs
   constructor() {
     super();
     this.jsonData = "";
@@ -45,22 +45,47 @@ class createTeam extends Component {
 
   captureCaptain(e) {
     this.selectCaptain = e.target.id;
+    if(this.selectVCaptain === e.target.id){
+      e.target.checked =false;
+    }else{
+      e.target.checked =true;
+    }
+    if(e.target.checked){
     this.setState({setCaptain:true});
+    }else{
+      this.setState({setCaptain:false});
+    }
+    
   }
 
   captureVCaptain(e) {
     this.selectVCaptain = e.target.id;
-    this.setState({setVCaptain:true})
+
+    if(this.selectCaptain === e.target.id){
+      e.target.checked =false;
+    }else{
+      e.target.checked =true;
+    }
+
+    //setting checkbox
+    if(e.target.checked){
+    this.setState({setVCaptain:true});
+    }else{
+      this.setState({setVCaptain:false});
+    }
   }
 
   handleTeamName(e) {
     this.teamName = e.target.value;
-   // this.setState({teamTitle:this.teamName});
   }
 
   saveTeam(team, captain, viceCaptain, teamName){
+    if(this.teamName.length >=3 && this.teamName.length <=15){
     this.props.submitTeam(team, captain, viceCaptain, teamName);
     this.setState({renderReady:true});
+    }else{
+      alert('Team Name should be minimum 3 and max 15 alphabetic characters');
+    }
   }
   renderData() {
     //const searchCondition = this.searchKey;
@@ -174,6 +199,9 @@ class createTeam extends Component {
             placeholder="Enter Team Name..."
             onChange={this.handleTeamName}
             className="setSearchBar"
+            id='getTeamName'
+            maxLength="10"
+            minLength='3'
           />
         </div>
         <div>
@@ -189,7 +217,7 @@ class createTeam extends Component {
           <button
             type="button"
             name="saveTeam"
-            className=""
+            className="saveTeam"
             disabled ={(!this.state.setCaptain ||  !this.state.setVCaptain)}
             onClick={() =>
               this.saveTeam(

@@ -1,66 +1,70 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./detailTeam.css";
-import { Redirect } from 'react-router'
-import TeamPanel from '../component/teamPanel';
+import { Redirect } from "react-router";
+import TeamPanel from "../component/teamPanel";
 
 class detailTeam extends Component {
   constructor(props) {
     super(props);
 
-    this.targetTeam= [];
+    this.targetTeam = [];
     this.state = {
-        detailedTeam :[],
-        backActivated:false
-    }
+      detailedTeam: [],
+      backActivated: false
+    };
     this.targetTeam = this.props.location.detailTeamData;
     this.backToView = this.backToView.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
-  
-  backToView(e){
-    if(e.target.innerText === 'Back'){
-        this.setState({backActivated:true});
+
+  backToView(e) {
+    if (e.target.innerText === "Back") {
+      this.setState({ backActivated: true });
     }
   }
 
-  componentDidMount(){ 
-      let parsedTeam = '';
-      this.setState({ detailedTeam: parsedTeam });
-      if(this.targetTeam !==undefined){
-     parsedTeam = this.targetTeam.map((member, index) => {
+  handleDelete(e, id) {
+    this.props.deleteTeam(id);
+   // this.showAllTeams();
+   // this.setState({ buttonText: "Refresh" });
+   this.setState({ backActivated: true });
+  }
+
+  componentDidMount() {
+    let parsedTeam = "";
+    this.setState({ detailedTeam: parsedTeam });
+    if (this.targetTeam !== undefined) {
+      parsedTeam = this.targetTeam.map((member, index) => {
         return (
-          // <div className="card border-success mb-3 setWidth">
-          //   <div className="card-header bg-transparent border-success">
-          //     {member.teamName}
-          //   </div>
-          //   <div className="card-body text-success">
-          //       <div><span className="card-title">Captain:</span>
-          //       <span>{member.captain}</span></div>
-          //       <div><span className="card-title">VCaptain:</span>
-          //       <span>{member.VCaptain}</span></div>
-          //     <h5 className="card-title">Players:</h5>
-          //     {member.players.map(item => {
-          //       return <p className="card-text">{item}</p>;
-          //     })}
-          //   </div>
-          // </div>
-          <TeamPanel teamMember = {member} deleteEnable='false' viewEnable='false' showMembers = 'true'/>
+          <TeamPanel
+            teamMember={member}
+            deleteEnable="true"
+            viewEnable="false"
+            showMembers="true"
+            deleteClick={e => this.handleDelete(e, member.id)}
+          />
         );
       });
     }
-  
-      this.setState({ detailedTeam: parsedTeam });
+
+    this.setState({ detailedTeam: parsedTeam });
   }
-  
+
   render() {
-      const backButton = this.state.backActivated;
+    const backButton = this.state.backActivated;
     this.targetTeam = this.props.location.detailTeamData;
     return (
       <div>
-          <div><button onClick={this.backToView} className='btn btn-dark setButton'> Back</button></div>
+        <div>
+          <button onClick={this.backToView} className="btn btn-dark setButton">
+            {" "}
+            Back
+          </button>
+        </div>
         {this.state.detailedTeam}
 
-        {backButton &&<Redirect to = {{pathname:'/viewteam'}}/>}
+        {backButton && <Redirect to={{ pathname: "/viewteam" }} />}
       </div>
     );
   }
@@ -76,7 +80,7 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispach => {
   return {
-  //  deleteTeam: teamId => dispach({ type: "DELETE_TEAM", teamID: teamId })
+    deleteTeam: teamId => dispach({ type: "DELETE_TEAM", teamID: teamId })
   };
 };
 

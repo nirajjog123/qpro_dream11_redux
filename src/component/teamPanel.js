@@ -25,13 +25,13 @@ const teamData = member => {
         )}
       </div>
       <div className="card-footer bg-transparent border-success">
-        {member.deleteEnable !== "false" && (
+        {member.viewEnable !== "false" && (
           <button className="btn btn-dark mgrRtBtn" onClick={member.viewClick}>
             View Team
           </button>
         )}
 
-        {member.viewEnable !== "false" && (
+        {member.deleteEnable !== "false" && (
           <button className="btn btn-dark" onClick={member.deleteClick}>
             Delete
           </button>
