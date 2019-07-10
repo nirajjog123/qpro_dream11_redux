@@ -1,21 +1,22 @@
 import React from "react";
 import "jest-dom/extend-expect";
 import Adapter from "enzyme-adapter-react-16";
-import { shallow, configure } from "enzyme";
+import { shallow, configure , mount } from "enzyme";
 import sinon from "sinon";
 
-import ConnectedApp, { createTeam } from "./createTeam";
+import ConnectedApp, { CreateTeam } from "./createTeam";
 
 configure({ adapter: new Adapter() });
-const spy = sinon.spy();
 
 function setup() {
   const props = {
-    handleTeamName: jest.fn()
+    handleTeamName: jest.fn(),
+    saveTeam:jest.fn(),
+    alert:jest.fn()
   };
 
 
-  const enzymeWrapper = shallow(<createTeam {...props} />);
+  const enzymeWrapper = shallow(<CreateTeam {...props} />);
 
   return {
     props,
@@ -30,14 +31,11 @@ describe("<CreateTeam />", () => {
     expect(enzymeWrapper).toMatchSnapshot();
   });
 
-//   it("saveTeam should be called atleast once", () => {
-//     const onButtonClick = spy;
-
-//     const inputD = shallow(<createTeam onButtonClick={onButtonClick} />);
-
-//     inputD.find('input').simulate('click');
-//     //expect(props.handleTeamName).toBeCalled();
-
-//     expect(enzymeWrapper).toMatchSnapshot();
-//   });
+  it("saveTeam should be called atleast once", () => {
+    //const onButtonClick = sinon.spy();
+    const jsdomAlert = window.alert;  // remember the jsdom alert
+    window.alert = () => {};  // provide an empty implementation for window.alert
+    
+    expect(enzymeWrapper.find('.saveTeam').simulate('click'));
+  });
 });

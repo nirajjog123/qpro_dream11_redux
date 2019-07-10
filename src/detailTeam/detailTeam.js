@@ -4,7 +4,7 @@ import "./detailTeam.css";
 import { Redirect } from "react-router";
 import TeamPanel from "../component/teamPanel";
 
-class detailTeam extends Component {
+export class DetailTeam extends Component {
   constructor(props) {
     super(props);
 
@@ -13,7 +13,7 @@ class detailTeam extends Component {
       detailedTeam: [],
       backActivated: false
     };
-    this.targetTeam = this.props.location.detailTeamData;
+    this.targetTeam = this.props.location ? this.props.location.detailTeamData : [];
     this.backToView = this.backToView.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -53,7 +53,7 @@ class detailTeam extends Component {
 
   render() {
     const backButton = this.state.backActivated;
-    this.targetTeam = this.props.location.detailTeamData;
+    this.targetTeam = this.props.location ? this.props.location.detailTeamData : [];
     return (
       <div>
         <div>
@@ -87,4 +87,4 @@ const mapDispachToProps = dispach => {
 export default connect(
   mapStateToProps,
   mapDispachToProps
-)(detailTeam);
+)(DetailTeam);

@@ -1,18 +1,17 @@
 import React from "react";
 import "jest-dom/extend-expect";
 import Adapter from "enzyme-adapter-react-16";
-import { shallow, configure, mount } from "enzyme";
-import sinon from "sinon";
-import ConnectedApp, { DetailTeam } from "./detailTeam";
+import { shallow, configure } from "enzyme";
+import ConnectedApp, { ListTeam } from "./listTeam";
 
 configure({ adapter: new Adapter() });
 
 function setup() {
   const props = {
-    handleDelete: jest.fn()
+  //  handleDelete: jest.fn()
   };
 
-  const enzymeWrapper = shallow(<DetailTeam {...props} />);
+  const enzymeWrapper = shallow(<ListTeam {...props} />);
 
   return {
    // props,

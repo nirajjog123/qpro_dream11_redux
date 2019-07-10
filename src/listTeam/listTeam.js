@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./listTeam.css";
 import {Redirect } from 'react-router'
 import TeamPanel from '../component/teamPanel';
-class listTeam extends Component {
+export class ListTeam extends Component {
   constructor() {
     super();
 
@@ -22,11 +22,11 @@ class listTeam extends Component {
   }
 
   componentDidMount() {
-    this.player = this.props.selectedPlayer.map((member, index) => {
+    this.player = this.props.selectedPlayer ? (this.props.selectedPlayer.map((member, index) => {
       return (
         <TeamPanel teamMember = {member} deleteEnable='false' viewEnable='false'/>
       );
-    });
+    })) :[];
 
     this.setState({ viewData: this.player });
   }
@@ -63,4 +63,4 @@ const mapDispachToProps = dispach => {
 export default connect(
   mapStateToProps,
   mapDispachToProps
-)(listTeam);
+)(ListTeam);

@@ -6,7 +6,7 @@ import ViewTeam from "./viewTeam/viewTeam";
 import detailTeam from "./detailTeam/detailTeam";
 import listTeam from "./listTeam/listTeam";
 
-function App() {
+export function App() {
   return (
     <div className="App">
       <Router>

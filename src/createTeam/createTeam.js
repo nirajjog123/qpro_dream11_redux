@@ -90,7 +90,7 @@ export class CreateTeam extends Component {  //writing 'export' for test case ..
   renderData() {
     //const searchCondition = this.searchKey;
 
-    let playerData = this.props.jsonData;
+    let playerData = this.props.jsonData ? this.props.jsonData : [];
 
     let filterData = "";
     //show filter data
@@ -145,7 +145,7 @@ export class CreateTeam extends Component {  //writing 'export' for test case ..
   }
 
   render() {
-    let playerData = this.props.jsonData;
+    let playerData = this.props.jsonData ? this.props.jsonData : [];
     if (this.searchKey === "" || this.searchKey === undefined) {
       this.showPlayerData = playerData.map((member, index) => {
         return (
